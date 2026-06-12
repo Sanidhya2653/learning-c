@@ -3,6 +3,6 @@ project(C_Programming C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(HelloWorld HelloWorld.c)
-add_executable(Printf printf.c)
-add_executable(Printf2 printf2.c)
+add_executable(HelloWorld 01_Basics/HelloWorld.c)
+add_executable(Printf 01_Basics/printf.c)
+add_executable(Printf2 01_Basics/printf2.c)
