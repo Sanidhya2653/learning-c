@@ -1,0 +1,28 @@
+What is the difference between for loop and while loop? ( in terms of syntax and working )
+
+/* While loop syntax */
+
+initialization;
+
+while(condition)
+{
+    // body
+
+    update;
+}
+
+
+
+/* For loop syntax */
+
+for(initialization; condition; update)
+{
+    // body
+}
+
+
+Working is same for both.
+1) initialization
+2) check condition
+3) body ( execute each block of stmt )
+4) update

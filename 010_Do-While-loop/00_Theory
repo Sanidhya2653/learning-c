@@ -1,0 +1,12 @@
+1) syntax of do while loop:
+
+do
+ {
+    // Loop body
+ }
+while(condition);
+
+
+2) flowchart
+https://media.geeksforgeeks.org/wp-content/uploads/20221006152307/dowhileloopinc.png
+
