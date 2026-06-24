@@ -2,6 +2,7 @@
 
 int main()
 {
-    printf("%zu\n", sizeof(long int));
+    int x;
+    printf("%d", x);
     return 0;
 }
