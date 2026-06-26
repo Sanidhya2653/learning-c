@@ -1,0 +1,19 @@
+Some Frequently Used Library Functions
+
+| Header File  | Function    | Purpose               |
+| ------------ | ----------- | --------------------- |
+| `<stdio.h>`  | `printf()`  | Print output          |
+| `<stdio.h>`  | `scanf()`   | Read input            |
+| `<stdio.h>`  | `getchar()` | Read one character    |
+| `<stdio.h>`  | `putchar()` | Print one character   |
+| `<math.h>`   | `sqrt()`    | Square root           |
+| `<math.h>`   | `pow()`     | Raise to a power      |
+| `<string.h>` | `strlen()`  | String length         |
+| `<string.h>` | `strcpy()`  | Copy a string         |
+| `<string.h>` | `strcmp()`  | Compare strings       |
+| `<stdlib.h>` | `malloc()`  | Allocate memory       |
+| `<stdlib.h>` | `free()`    | Free allocated memory |
+| `<ctype.h>`  | `toupper()` | Convert to uppercase  |
+| `<ctype.h>`  | `tolower()` | Convert to lowercase  |
+
+

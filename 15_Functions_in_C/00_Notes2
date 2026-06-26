@@ -1,0 +1,259 @@
+1) /* so till now the programs i have been writing was inside the main function right */
+
+i) What is main()?
+
+   main() is also a function. It's a special function because it's where every C program starts executing.
+
+   Think of it like this:
+
+   Computer
+       │
+       ▼
+   Starts execution
+       │
+       ▼
+   main()
+
+   The operating system calls main(), and from there, your program runs.
+
+ii) Think of main() as the manager
+
+Imagine a company.
+
+main() is the manager.
+Other functions are employees.
+
+The manager doesn't do every task personally.
+
+Instead, it assigns work:
+
+main()
+│
+├── readInput()
+├── calculate()
+├── displayResult()
+└── saveData()
+
+This makes the program easier to understand and maintain.
+
+2) /* Standard library functions in C */
+
+Library functions are pre-written functions provided by the C Standard Library. Instead of writing common tasks yourself, you can simply call these functions.
+Think of them as ready-made tools.
+
+For example, if you want to print something on the screen, you don't write the code that communicates with the operating system. You simply use:
+
+printf("Hello");
+
+Here, printf() is a library function.
+
+/* Why do we need library functions? */
+
+Imagine you want to:
+
+Print output
+Read input
+Find the length of a string
+Calculate a square root
+Open a file
+Generate a random number
+
+You could write all of these yourself, but it would take a lot of time.
+
+Instead, C provides these functions in its standard library.
+
+Example
+#include <stdio.h>
+
+int main()
+{
+    printf("Hello World");
+
+    return 0;
+}
+
+You wrote only:
+
+printf("Hello World");
+
+but the actual implementation of printf() contains thousands of lines of code written by the library developers.
+
+
+/* Where do library functions come from? */
+
+They are declared in header files.
+
+For example,
+
+#include <stdio.h>
+
+makes functions like
+
+printf()
+scanf()
+getchar()
+putchar()
+
+available.
+
+
+
+/* Common Header Files */
+
+i) <stdio.h>      --> standard input output
+
+Used for input and output.
+
+Functions:
+
+printf()
+scanf()
+getchar()
+putchar()
+fopen()
+fclose()
+
+Example
+
+#include <stdio.h>
+
+int main()
+{
+    printf("Hello");
+}
+
+
+ii) <math.h>
+
+Used for mathematical operations.
+
+Functions:
+
+sqrt()
+pow()
+sin()
+cos()
+log()
+ceil()
+floor()
+
+Example
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+    printf("%.2f", sqrt(25));
+
+    return 0;
+}
+
+Output
+
+5.00
+
+iii) <string.h>
+
+Used for string manipulation.
+
+Functions:
+
+strlen()
+strcpy()
+strcat()
+strcmp()
+memcpy()
+
+Example
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char name[] = "ChatGPT";
+
+    printf("%lu", strlen(name));
+
+    return 0;
+}
+
+Output
+7
+
+
+iv) <stdlib.h>
+
+Used for utilities like memory allocation and conversions.
+
+Functions:
+
+malloc()
+calloc()
+free()
+rand()
+atoi()
+exit()
+
+Example
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    printf("%d", rand());
+
+    return 0;
+}
+
+
+v) <ctype.h>
+
+Used for character handling.
+
+Functions:
+
+toupper()
+tolower()
+isdigit()
+isalpha()
+
+Example
+
+#include <stdio.h>
+#include <ctype.h>
+
+int main()
+{
+    printf("%c", toupper('a'));
+
+    return 0;
+}
+
+Output
+A
+
+
+/* User-defined function vs Library functions */
+
+i) Library Function: Already written for you.
+
+printf("Hello");
+
+You only use it.
+
+ii) User-defined Function: You write it yourself.
+
+#include <stdio.h>
+
+void greet()
+{
+    printf("Hello");
+}
+
+int main()
+{
+    greet();
+}

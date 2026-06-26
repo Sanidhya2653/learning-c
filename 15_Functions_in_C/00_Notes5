@@ -1,0 +1,255 @@
+A header file does not usually contain the actual code of a library function.
+Instead, it contains its declaration (prototype).
+
+""The implementation (the real code) is stored in the C standard library, not in the header file.""
+
+BIG QUESTION: if the header file doesn't include the code and it is stored in the c standard library
+               how does it fetches it  (ans in notes 5)
+
+
+                  ************** Ans ****************
+
+
+This is an excellent question. Understanding this will help you understand how C programs are actually built.
+
+The key is that compiling and linking are two different steps.
+
+Let's follow your program from start to finish.
+
+Step 1: You write your program
+#include <stdio.h>
+
+int main()
+{
+    printf("Hello");
+    return 0;
+}
+
+Step 2: The Preprocessor
+
+The preprocessor sees:
+#include <stdio.h>
+
+and copies the contents of stdio.h into your source file.
+
+It is almost as if your code became:
+
+// Contents of stdio.h (simplified)
+
+int printf(const char *format, ...);
+
+int main()
+{
+    printf("Hello");
+    return 0;
+}
+
+
+Notice something important:
+There is no implementation of printf().
+Only its declaration.
+
+Step 3: The Compiler
+
+Now the compiler reads:
+
+int printf(const char *format, ...);
+
+and thinks:
+
+"Okay, printf() exists."
+
+When it reaches
+
+printf("Hello");
+
+it already knows
+
+the return type (int)
+the parameter types
+
+So it can check your code for errors.
+
+The compiler then creates an object file.
+
+For example:
+
+main.c
+    ↓
+Compiler
+    ↓
+main.o
+
+At this point, your program still doesn't contain printf().
+
+Instead, the object file says something like:
+
+I need a function named printf.
+Step 4: The Linker (The Important Part)
+
+Now the linker starts.
+
+It sees
+
+main.o
+
+and notices:
+
+printf()
+
+is missing.
+
+So it searches the C Standard Library.
+
+main.o
+      │
+      ▼
+Needs printf()
+
+      │
+      ▼
+Search standard library
+
+      │
+      ▼
+Found printf()
+
+      │
+      ▼
+Link it into the executable
+
+Now your executable contains everything it needs.
+
+main.exe
+
+
+/**** Where is the Standard Library? ***/
+
+When you install a compiler like GCC, Clang, or MSVC, it comes with libraries.
+
+For example, GCC includes libraries such as:
+
+libc.a
+libc.so
+
+or on Windows
+
+msvcrt.dll
+ucrtbase.dll
+
+These contain the actual machine code for functions like
+
+printf()
+scanf()
+malloc()
+free()
+Complete Build Process
+Your Source Code
+(main.c)
+
+        │
+        ▼
+
+Preprocessor
+Copies stdio.h
+
+        │
+        ▼
+
+Compiler
+Creates main.o
+
+        │
+        ▼
+
+Linker
+Looks for printf()
+
+        │
+        ▼
+
+C Standard Library
+
+        │
+        ▼
+
+Executable
+(main.exe)
+Real-life Analogy
+
+Imagine you're writing a report.
+
+You write:
+
+See Appendix A.
+
+The appendix isn't inside the page you're writing.
+
+It exists elsewhere.
+
+When the final book is assembled, the publisher adds Appendix A.
+
+Your report
+      │
+      ▼
+"See Appendix A"
+
+      │
+      ▼
+Publisher attaches Appendix A
+
+      │
+      ▼
+Complete book
+
+Here:
+
+Header file = Table of contents / index ("Appendix A exists")
+Standard library = The actual appendix
+Linker = The publisher assembling the final book
+
+
+Q) Why not put the whole printf() code in stdio.h?
+
+Imagine every program included the entire implementation of printf() in the header.
+
+Then every source file would contain thousands of extra lines.
+
+For example:
+
+main.c
++ printf implementation
++ scanf implementation
++ fopen implementation
++ fclose implementation
++ ...
+
+Every .c file would become enormous, compilation would be slower, and
+maintaining the library would be much harder.
+
+Instead:
+
+Header (.h) → declares what exists.
+Library (.a, .so, .dll) → contains the actual compiled code.
+
+This separation is one of the reasons C scales well to large projects.
+
+Since you're using CLion with GCC
+
+When you click Run, CMake and GCC automatically perform these steps:
+
+main.c
+   ↓
+Preprocessor
+   ↓
+Compiler
+   ↓
+Object file (.o)
+   ↓
+Linker
+   ↓
+Standard C Library
+   ↓
+Executable (.exe)
+   ↓
+Program runs

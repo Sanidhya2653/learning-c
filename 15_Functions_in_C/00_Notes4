@@ -1,0 +1,212 @@
+Q)What is a header file?
+A header file in C is a file that contains declarations of functions, macros, constants,
+and data types that you can use in your program.
+
+Header files usually have the extension:
+.h
+
+Examples:
+
+stdio.h
+math.h
+string.h
+stdlib.h
+
+Q)Why do we need header files?
+
+Suppose you write:
+
+#include <stdio.h>
+int main()
+{
+    printf("Hello");
+}
+
+Here,
+
+#include <stdio.h>
+
+tells the compiler:
+
+"I'm going to use functions that are declared in stdio.h."
+
+Without this line, the compiler wouldn't know what printf() is.
+
+Think of it like a dictionary 📖
+
+Imagine you're reading a book.
+
+Whenever you see a difficult word, you look it up in a dictionary.
+
+Similarly,
+
+printf();
+
+is just a name.
+
+The compiler looks inside
+
+stdio.h
+
+to understand:
+
+Does this function exist?
+What does it return?
+What parameters does it take?
+What's actually inside a header file?
+
+
+/** Interesting Note **/
+
+A header file does not usually contain the actual code of a library function.
+Instead, it contains its declaration (prototype).
+
+For example, inside stdio.h, you'll find a declaration similar to:
+int printf(const char *format, ...);
+
+This tells the compiler:
+
+Function name → printf
+Returns → int
+Takes → a format string and optional arguments
+
+""The implementation (the real code) is stored in the C standard library, not in the header file.""
+
+BIG QUESTION: if the header file doesn't include the code and it is stored in the c standard library
+               how does it fetches it  (ans in notes 5)
+
+Visual representation
+Your Program
+      │
+      ▼
+#include <stdio.h>
+      │
+      ▼
+Compiler reads function declarations
+      │
+      ▼
+printf("Hello");
+      │
+      ▼
+Linker connects your program
+with the actual printf() implementation
+
+Example
+#include <stdio.h>
+
+int main()
+{
+    printf("Hello");
+
+    return 0;
+}
+
+Flow:
+
+main()
+↓
+printf()
+↓
+stdio.h says:
+
+printf exists
+returns int
+accepts these parameters
+
+↓
+Compiler is satisfied
+↓
+During linking
+↓
+Actual printf code is added
+
+
+Another example
+
+Suppose you want the square root.
+
+#include <math.h>
+
+int main()
+{
+    printf("%f", sqrt(25));
+
+    return 0;
+}
+
+Here,
+
+sqrt()
+
+is declared in
+
+math.h
+What happens if you don't include the header?
+int main()
+{
+    printf("Hello");
+}
+
+Modern compilers will usually report an error or warning such as:
+
+implicit declaration of function 'printf'
+
+because the compiler hasn't seen the declaration of printf().
+
+
+/**  Angle brackets (<>) vs Double quotes ("") **/
+
+There are two ways to include a header.
+
+// System header//
+
+#include <stdio.h>
+
+The compiler searches the standard include directories.
+Use this for standard library headers.
+
+// User-defined header //
+
+Suppose you create
+mymath.h
+
+Then include it like this:
+#include "mymath.h"
+
+The compiler searches your project directory first.
+
+Example of your own header file
+
+Suppose you create
+
+add.h
+int add(int, int);
+
+Now
+
+main.c
+#include <stdio.h>
+#include "add.h"
+
+int main()
+{
+    printf("%d", add(5, 6));
+}
+
+And
+
+add.c
+int add(int a, int b)
+{
+    return a + b;
+}
+
+This is how large C projects are organized.
+
+Header File vs Source File
+Header File (.h)	                        Source File (.c)
+Contains declarations	                Contains implementations
+Included using #include	                Compiled into object code
+Usually stores function prototypes	    Stores actual function definitions
+Shared among multiple source files	    Contains executable code
+

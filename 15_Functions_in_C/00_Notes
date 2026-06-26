@@ -1,0 +1,111 @@
+1)/* Syntax */
+
+return_type function_name(parameter_list)
+{
+    // statements
+
+    return value;
+}
+
+Example:
+int add(int a, int b)
+{
+    return a + b;
+}
+
+#definition
+type fname (type arg1, type arg2)
+{
+    /*Local variables & executable code*/
+}
+
+#calling a function
+fname(arg1, arg2);
+
+#prototype/declaration
+type fname (type, type);
+
+
+
+2)/* Function Declaration (Prototype) */
+
+  Sometimes the function is written after main().
+  Then we need a declaration.
+
+  #include <stdio.h>
+
+  int add(int, int);
+
+  int main()
+  {
+      printf("%d", add(4,5));
+  }
+
+  int add(int a, int b)
+  {
+      return a+b;
+  }
+
+The declaration tells the compiler:
+"Trust me, this function exists later."
+
+3) /* What does void mean? */
+
+void means: This function returns nothing.
+
+Example
+
+void display()
+{
+    printf("Welcome");
+}
+
+You cannot write:
+
+int x = display();
+
+because display() returns no value.
+
+4) /* Parameters vs Arguments */
+
+These terms are often confused.
+
+i)Parameters : Variables in the function definition.
+
+int add(int a, int b)
+
+a and b are parameters.
+
+ii)Arguments : Values supplied during the function call.
+
+add(5,7);
+
+5 and 7 are arguments.
+
+5) /* Local Variables */
+
+Variables declared inside a function.
+
+void test()
+{
+    int x = 5;
+}
+
+x exists only inside test().
+
+Trying to use it outside results in an error.
+
+6) /* Scope */
+void test()
+{
+    int x = 10;
+}
+
+int main()
+{
+    printf("%d", x);
+}
+
+Compiler error.
+x is not visible in main().
+
