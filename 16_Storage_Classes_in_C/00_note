@@ -1,0 +1,40 @@
+Storage Classes in C language:
+
+i)   auto      --> for local variable
+ii)  register  --> for local variable
+iii) static    --> for both global and local variable
+iv)  extern    --> for both global and local variable
+
+Local variables --> declared inside a function or a block (like main(), if, for,etc)
+Global variable --> declared outside of all functions, usually at the top of the program
+
+i) auto storage class
+   Storage - stack
+   Initial value - garbage
+   Scope - within block
+   Life time - end of the block
+
+   Note: auto is only used for local variables and this is the default class for local variables
+
+ii) register storage class
+    Storage - register
+    Initial value - garbage
+    Scope - within block
+    Life time - end of the block
+
+    Note: this is just a suggestion to the compiler to store the variable in the register it is not a
+          compulsion to it. so it may store it in the register it is not compulsory
+
+
+iii) static storage class
+     Storage - static memory
+     Initial value - zero
+     Scope - within block
+     Life time - till end of the program
+
+iv) extern storage class
+    Storage - static memory
+    Initial value - zero
+    Scope - global
+    Life time - till end of the program
+
